@@ -14,7 +14,7 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(child: Text(context.read<SecondProvider>().title),),
+        body: Center(child: Text(Provider.of<SecondProvider>(context).title),),
     );
   }
 }

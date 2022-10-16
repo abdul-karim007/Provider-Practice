@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:prov_pract1/providers/CounterProvider.dart';
 import 'package:provider/provider.dart';
 
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('Build');
     return Scaffold(
-      appBar: AppBar(
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Consumer<CounterProvider>(
+                builder: (context, val, child) => Text(val.counter.toString())),
+            ElevatedButton(
+              onPressed: () => Provider.of<CounterProvider>(context, listen: false)
+                  .navigate(context, '/second'),
+              child: Text('Go to Second'),
             ),
-            Text(
-              "${context.watch<CounterProvider>().counter}",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(onPressed: () => context.read<CounterProvider>().navigate(context, '/second'), child: Text('Go to Second'))
           ],
         ),
       ),
@@ -30,17 +28,17 @@ class MyHomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             heroTag: null,
-            onPressed: () => context.read<CounterProvider>().increment(),
+            onPressed: () => Provider.of<CounterProvider>(context, listen: false).increment(),
             child: const Icon(Icons.add),
           ),
           FloatingActionButton(
             heroTag: null,
-            onPressed: () => context.read<CounterProvider>().reset(),
+            onPressed: () => Provider.of<CounterProvider>(context, listen: false).reset(),
             child: const Icon(Icons.refresh_sharp),
           ),
           FloatingActionButton(
             heroTag: null,
-            onPressed: () => context.read<CounterProvider>().decrement(),
+            onPressed: () => Provider.of<CounterProvider>(context, listen: false).decrement(),
             child: const Icon(Icons.remove),
           ),
         ],
