@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
             child: const Icon(Icons.remove),
           ),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
