@@ -15,22 +15,18 @@ class SecondScreen extends StatelessWidget {
         children: [
           Consumer<SecondProvider>(
             builder: (BuildContext context, value, Widget? child) => Text(
-              "${value.title}  ${value.min}",
-              style: TextStyle(fontSize: value.min),
+              "${value.title}  ${value.val}",
+              style: TextStyle(fontSize: value.val),
             ),
           ),
           Consumer<SecondProvider>(
             builder: (BuildContext context, value, Widget? child) => Slider(
-              onChangeEnd: (val) {
-                value.onChangeMade(val);
-              },
-              onChangeStart: (val) {
-                value.onChangeMade(val);
-              },
-              divisions: value.div,
-              value: value.min,
-              min: value.min,
-              max: value.max,
+              divisions: 9,
+              activeColor: value.defColor,
+              inactiveColor: value.defColor,
+              value: value.val,
+              min: 10,
+              max: 100,
               onChanged: (val) {
                 value.onChangeMade(val);
               },
